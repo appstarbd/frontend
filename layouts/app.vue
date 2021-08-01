@@ -20,9 +20,6 @@ export default {
     //   required: false,
     //   default: 'bg-white'
     // })
-  },
-  created () {
-    console.dir(this.$router.currentRoute.name)
   }
 }
 </script>

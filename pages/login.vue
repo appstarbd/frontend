@@ -9,7 +9,6 @@
           Sign in to your account.
         </p>
       </div>
-      User: {{ $auth.user }}
       <div class="mt-10">
         <form class="flex flex-col" method="POST">
           <div class="mb-6 pt-3 rounded bg-gray-200">
@@ -54,7 +53,7 @@
 <script>
 export default {
   name: 'Login',
-  layout: 'auth',
+  layout: 'guest',
   middleware: 'guest',
   // async fetch () {
   //   this.posts = await fetch('http://localhost/sanctum/csrf-cookie').then(res =>
@@ -63,22 +62,29 @@ export default {
   // },
   data: () => ({
     form: {
-      email: 'imran@email.com',
-      password: '12345678'
+      email: '',
+      password: ''
     }
   }),
-  async mounted () {
-    await this.$axios.get('http://localhost:8000/sanctum/csrf-cookie').then((res) => {
-      console.dir(res)
-    })
+  mounted () {
+    // await this.$axios.get('http://localhost:80/sanctum/csrf-cookie').then((res) => {
+    //   console.log(res)
+    // })
   },
   methods: {
+    // async login () {
+    //   await this.$axios.get('http://localhost:80/sanctum/csrf-cookie').then(function (response) {
+    //     // this.$axios.post('https://api/login', {
+    //     this.$axios.post('http://localhost:80/login', {
+    //       email: this.form.email,
+    //       password: this.form.password
+    //     })
+    //   }.bind(this))
+    // }
     async login () {
       // console.dir('login')
-      await this.$axios.$get('http://localhost:8000/sanctum/csrf-cookie')
-      this.$auth.loginWith('laravelSanctum', {
-        data: this.form
-      }).then(response => console.log(response))
+      // await this.$axios.$get('http://localhost:80/sanctum/csrf-cookie')
+      await this.$auth.loginWith('laravelSanctum', this.form).then(response => console.log(response))
         .catch(error => console.log(error))
     }
   }

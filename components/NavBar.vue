@@ -63,29 +63,59 @@
 <script>
 export default {
   name: 'NavBar',
-  data: () => ({
-    links: [
-      {
-        name: 'Home',
-        icon: null,
-        url: '/'
-      },
-      {
-        name: 'Products',
-        icon: null,
-        url: 'product'
-      },
-      {
-        name: 'Login',
-        icon: null,
-        url: 'login'
-      },
-      {
-        name: 'Register',
-        icon: null,
-        url: 'register'
+  props: {
+    links: {
+      type: [Array, Object],
+      required: false,
+      default () {
+        return [
+          {
+            name: 'Home',
+            icon: null,
+            url: '/'
+          },
+          {
+            name: 'Products',
+            icon: null,
+            url: '/product'
+          },
+          {
+            name: 'Login',
+            icon: null,
+            url: '/login'
+          },
+          {
+            name: 'Register',
+            icon: null,
+            url: '/register'
+          }
+        ]
       }
-    ]
+    }
+  },
+  data: () => ({
+    // links: [
+    //   {
+    //     name: 'Home',
+    //     icon: null,
+    //     url: '/'
+    //   },
+    //   {
+    //     name: 'Products',
+    //     icon: null,
+    //     url: '/admin/product'
+    //   },
+    //   {
+    //     name: 'Login',
+    //     icon: null,
+    //     url: 'login'
+    //   },
+    //   {
+    //     name: 'Register',
+    //     icon: null,
+    //     url: 'register'
+    //   }
+    // ]
   })
 }
 </script>

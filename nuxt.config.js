@@ -43,8 +43,21 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/toast'
   ],
+  // toast: {
+  //   position: 'top-center',
+  //   register: [ // Register custom toasts
+  //     {
+  //       name: 'my-error',
+  //       message: 'Oops...Something went wrong',
+  //       options: {
+  //         type: 'error'
+  //       }
+  //     }
+  //   ]
+  // },
   auth: {
     // Options
     // plugins: ['~/plugins/auth.js'],
@@ -57,30 +70,70 @@ export default {
     //     }
     //   }
     // },
+    // redirect: {
+    //   login: '/login',
+    //   logout: '/',
+    //   callback: '/login',
+    //   home: '/'
+    // },
     strategies: {
       laravelSanctum: {
         provider: 'laravel/sanctum',
-        url: 'http://127.0.0.1:8000'
-        // endpoints: {
-        //   login: {
-        //     url: '/login'
-        //   },
-        //   logout: {
-        //     url: '/api/logout'
-        //   },
-        //   user: {
-        //     url: '/api/user'
-        //   }
-        // }
+        url: 'http://127.0.0.1:80',
+        endpoints: {
+          login: {
+            url: '/login'
+          }
+          // logout: {
+          //   url: '/api/logout'
+          // },
+          // user: {
+          //   url: '/api/user'
+          // }
+        }
+      },
+      // local: {
+      //   endpoints: {
+      //     login: {
+      //       url: '/login',
+      //       method: 'post',
+      //       withCredentials: true,
+      //       headers: {
+      //         'X-Requested-With': 'XMLHttpRequest',
+      //         'Content-Type': 'application/json'
+      //       }
+      //     },
+      //     user: {
+      //       url: '/api/user',
+      //       method: 'get',
+      //       propertyName: false,
+      //       withCredentials: true,
+      //       headers: {
+      //         'X-Requested-With': 'XMLHttpRequest',
+      //         'Content-Type': 'application/json'
+      //       }
+      //     }
+      //   },
+      //   tokenRequired: false,
+      //   tokenType: false
+      // },
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: false },
+          user: { url: '/api/user', method: 'get', propertyName: false }
+        },
+        tokenRequired: false,
+        tokenType: false
       }
     },
-    plugins: [{ src: '~/plugins/axios', ssr: true }, '~/plugins/auth.js']
+    // plugins: [{ src: '~/plugins/axios', ssr: true }, '~/plugins/auth.js']
+    plugins: []
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // proxy: true,
-    baseURL: 'http://127.0.0.1:8000/api',
+    baseURL: 'http://127.0.0.1:80/api',
     credentials: true
   },
   // proxy: {
